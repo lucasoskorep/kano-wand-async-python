@@ -144,7 +144,7 @@ class Wand(object):
         """
         if self.debug:
             print("Keeping wand alive.")
-        return await self._dev.write_gatt_char(IO.KEEP_ALIVE_CHAR.value, bytes([1]), response=True)
+        return await self._dev.write_gatt_char(IO.KEEP_ALIVE_CHAR.value, bytearray([1]), response=True)
 
     async def vibrate(self, pattern=PATTERN.REGULAR):
         """
@@ -161,7 +161,7 @@ class Wand(object):
             message = [pattern]
         if self.debug:
             print("Setting Vibration to {}".format(message))
-        return await self._dev.write_gatt_char(IO.VIBRATOR_CHAR.value, bytes(message), response=True)
+        return await self._dev.write_gatt_char(IO.VIBRATOR_CHAR.value, bytearray(message), response=True)
 
     async def set_led(self, color="0x2185d0", on=True):
         """
@@ -189,7 +189,7 @@ class Wand(object):
 
         if self.debug:
             print("Setting LED to {}".format(message))
-            return await self._dev.write_gatt_char(IO.LED_CHAR.value, bytes(message), response=True)
+            return await self._dev.write_gatt_char(IO.LED_CHAR.value, bytearray(message), response=True)
 
     async def subscribe_position(self):
         """
@@ -323,7 +323,7 @@ class Wand(object):
         """
         if self.debug:
             print("resetting the quarternion position")
-        return await self._dev.write_gatt_char(SENSOR.QUATERNIONS_RESET_CHAR.value, bytes([1]), response=True)
+        return await self._dev.write_gatt_char(SENSOR.QUATERNIONS_RESET_CHAR.value, bytearray([1]), response=True)
 
     async def _on_button(self, data):
         """
